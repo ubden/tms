@@ -40,7 +40,7 @@ module('Integration | Component | onboarding/form', function (hooks) {
     });
 
     test('it renders the brand logo when a brand is supplied', async function (assert) {
-        await render(hbs`<Onboarding::Form @brand={{hash logo_url="/images/fleetbase-logo-svg.svg"}} />`);
+        await render(hbs`<Onboarding::Form @brand={{hash logo_url="https://www.ubden.com/assets/images/ubden_light_slogansiz.png"}} />`);
 
         assert.dom('img').exists('the brand logo renders');
     });
@@ -210,7 +210,7 @@ module('Integration | Component | onboarding/form | onboard', function (hooks) {
 
         assert.deepEqual(this.owner.lookup('service:session').authenticated, ['auth-token']);
         assert.deepEqual(this.transitions, ['console'], 'the user lands in the console');
-        assert.deepEqual(this.notifications().successes, ['Welcome to Fleetbase!']);
+        assert.deepEqual(this.notifications().successes, ['Welcome to UbdenTMS']);
         assert.deepEqual(this.orchestratorCalls, [], 'the onboarding flow is not advanced');
     });
 

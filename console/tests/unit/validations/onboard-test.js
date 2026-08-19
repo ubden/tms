@@ -12,7 +12,7 @@ module('Unit | Validation | onboard', function () {
         assert.notStrictEqual(namePresence('name', ''), true, 'empty name fails');
         assert.strictEqual(namePresence('name', 'Ron'), true, 'present name passes');
         assert.notStrictEqual(orgPresence('organization_name', ''), true, 'empty org fails');
-        assert.strictEqual(orgPresence('organization_name', 'Fleetbase'), true, 'present org passes');
+        assert.strictEqual(orgPresence('organization_name', 'UbdenTMS'), true, 'present org passes');
     });
 
     test('email must be present and a valid email address', function (assert) {
