@@ -1,4 +1,4 @@
-name: Fleetbase Docker Images
+name: UbdenTMS Docker Images
 
 on:
     push:

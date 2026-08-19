@@ -29,7 +29,7 @@ export function initialize(appInstance) {
             new Widget({
                 id: 'fleetbase-blog',
                 name: 'Fleetbase Blog',
-                description: 'Lists latest news and events from the Fleetbase official team.',
+                description: 'Lists latest news and events from the Ubden official team.',
                 icon: 'newspaper',
                 component: 'fleetbase-blog',
                 grid_options: { w: 7, h: 9, minW: 7, minH: 9 },

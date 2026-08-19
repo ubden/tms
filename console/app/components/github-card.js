@@ -26,7 +26,7 @@ export default class GithubCardComponent extends Component {
     }
 
     @computed('data.releases_url', 'latestRelease.name') get releaseUrl() {
-        let url = 'https://github.com/fleetbase/fleetbase/releases';
+        let url = 'https://github.com/ubden/tms/releases';
 
         if (!isBlank(this.latestRelease?.name)) {
             url += '/tag/' + this.latestRelease.name;

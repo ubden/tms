@@ -1,4 +1,4 @@
-name: Fleetbase EKS CI/CD
+name: UbdenTMS EKS CI/CD
 
 on:
   push:

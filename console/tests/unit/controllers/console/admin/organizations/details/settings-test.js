@@ -51,7 +51,7 @@ module('Unit | Controller | console/admin/organizations/details/settings', funct
             const controller = this.owner.lookup('controller:console/admin/organizations/details/settings');
             controller.model = {
                 uuid: 'co_1',
-                name: 'Fleetbase',
+                name: 'UbdenTMS',
                 save: () => {
                     this.saved++;
                     return this.saveRejectsWith ? Promise.reject(this.saveRejectsWith) : Promise.resolve();

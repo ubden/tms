@@ -50,12 +50,12 @@ jobs:
     - uses: tsickert/discord-webhook@v5.3.0
       with:
         webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        username: Fleetbase
+        username: UbdenTMS
         content: |
           @everyone
           📦 **Fleetbase ${{ env.TAG }} released!**
           <https://github.com/${{ github.repository }}/releases/tag/${{ env.TAG }}>
         embed-title: "Fleetbase ${{ env.TAG }} — release notes"
-        embed-url: "https://github.com/fleetbase/fleetbase/releases/tag/${{ env.TAG }}"
+        embed-url: "https://github.com/ubden/tms/releases/tag/${{ env.TAG }}"
         embed-description: ${{ steps.prep-body.outputs.body }}
         embed-color: 4362730        # 0x4291EA (Fleetbase Blue)

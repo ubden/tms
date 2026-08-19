@@ -1,4 +1,4 @@
-name: Fleetbase CI/CD
+name: UbdenTMS CI/CD
 
 on:
   push:

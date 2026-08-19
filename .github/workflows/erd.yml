@@ -115,7 +115,7 @@ jobs:
           ERD_USE_DOCKER: 'true'
           ERD_DB_HOST: database
           ERD_DB_PORT: '3306'
-          ERD_DB_NAME: fleetbase
+          ERD_DB_name: UbdenTMS
           ERD_DB_USER: root
           ERD_DB_PASSWORD: ''
         run: ./create-erd.sh

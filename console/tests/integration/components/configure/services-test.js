@@ -31,7 +31,7 @@ class FetchStub extends Service {
                         },
                         messagebird: {
                             access_key: 'messagebird-key',
-                            originator: 'Fleetbase',
+                            originator: 'UbdenTMS',
                             base_url: 'https://rest.messagebird.com/messages',
                         },
                         smpp: {
@@ -45,7 +45,7 @@ class FetchStub extends Service {
                         custom_http: {
                             method: 'POST',
                             url: 'https://sms-gateway.test/send',
-                            from: 'Fleetbase',
+                            from: 'UbdenTMS',
                             auth_header: 'Authorization',
                             auth_token: 'Bearer token',
                             headers: {
@@ -103,7 +103,7 @@ module('Integration | Component | configure/services', function (hooks) {
         assert.dom('[data-test-sms-configure-provider]').hasValue('messagebird');
 
         await fillIn('[data-test-sms-test-phone]', '+441234567890');
-        await fillIn('[data-test-sms-test-message]', 'Fleetbase SMS test');
+        await fillIn('[data-test-sms-test-message]', 'UbdenTMS SMS test');
         await click('[data-test-sms-test-button]');
 
         const fetch = this.owner.lookup('service:fetch');
@@ -112,10 +112,10 @@ module('Integration | Component | configure/services', function (hooks) {
         assert.deepEqual(fetch.lastPost.payload, {
             provider: 'messagebird',
             phone: '+441234567890',
-            message: 'Fleetbase SMS test',
+            message: 'UbdenTMS SMS test',
             config: {
                 access_key: 'messagebird-key',
-                originator: 'Fleetbase',
+                originator: 'UbdenTMS',
                 base_url: 'https://rest.messagebird.com/messages',
             },
         });
@@ -149,7 +149,7 @@ module('Integration | Component | configure/services', function (hooks) {
         assert.deepEqual(fetch.lastPost.payload.config, {
             method: 'GET',
             url: 'https://sms-gateway.test/send',
-            from: 'Fleetbase',
+            from: 'UbdenTMS',
             auth_header: 'Authorization',
             auth_token: 'Bearer token',
             headers: {

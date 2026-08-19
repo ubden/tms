@@ -39,12 +39,12 @@ module('Integration | Component | fleetbase-blog', function (hooks) {
         fetch.response = [
             {
                 title: 'First Ghost Post',
-                link: 'https://www.fleetbase.io/blog/first-ghost-post',
+                link: 'https://www.ubden.com/blog/first-ghost-post',
                 pubDate: 'Wed, 06 May 2026 14:31:46 GMT',
             },
             {
                 title: 'Second Ghost Post',
-                link: 'https://www.fleetbase.io/blog/second-ghost-post',
+                link: 'https://www.ubden.com/blog/second-ghost-post',
                 pubDate: 'Wed, 06 May 2026 14:30:46 GMT',
             },
         ];
@@ -55,8 +55,8 @@ module('Integration | Component | fleetbase-blog', function (hooks) {
         assert.dom('.fleetbase-blog').containsText('Fleetbase Blog');
         // Each post link renders the title and the formatted date side by side, so the
         // anchor's text is "<title> <date>" — match on containment, not equality.
-        assert.dom('a[href="https://www.fleetbase.io/blog/first-ghost-post"]').containsText('First Ghost Post');
-        assert.dom('a[href="https://www.fleetbase.io/blog/second-ghost-post"]').containsText('Second Ghost Post');
+        assert.dom('a[href="https://www.ubden.com/blog/first-ghost-post"]').containsText('First Ghost Post');
+        assert.dom('a[href="https://www.ubden.com/blog/second-ghost-post"]').containsText('Second Ghost Post');
         // pubDate is rendered through formatPublishedDate as 'MMM d, yyyy', not raw.
         assert.dom('.fleetbase-blog').containsText('May 6, 2026');
     });

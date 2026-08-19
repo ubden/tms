@@ -36,7 +36,7 @@ module('Integration | Component | admin/table/cell/owner', function (hooks) {
     });
 
     test('a resolved belongsTo proxy is unwrapped to its content', async function (assert) {
-        const record = { name: 'Fleetbase' };
+        const record = { name: 'UbdenTMS' };
         this.set('row', { owner: { content: record, isFulfilled: true } });
         const component = await this.build();
 
@@ -44,7 +44,7 @@ module('Integration | Component | admin/table/cell/owner', function (hooks) {
     });
 
     test('a plain record is used as-is', async function (assert) {
-        const record = { name: 'Fleetbase' };
+        const record = { name: 'UbdenTMS' };
         this.set('row', { owner: record });
         const component = await this.build();
 

@@ -1,12 +1,12 @@
 <div id="hero">
   <p align="center" dir="auto">
-      <a href="https://fleetbase.io" rel="nofollow">
+      <a href="https://ubden.com" rel="nofollow">
         <img src="https://user-images.githubusercontent.com/58805033/191936702-fed04b0f-7966-4041-96d0-95e27bf98248.png" alt="Fleetbase logo" width="500" height="120" style="max-width: 100%;">
       </a>
     </p>
     <p align="center" dir="auto">
       <a href="https://github.com/fleetbase/fleetbase/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/fleetbase/fleetbase" alt="License"></a>
-      <a href="https://github.com/fleetbase/fleetbase/releases"><img src="https://img.shields.io/github/v/release/fleetbase/fleetbase" alt="Latest Release"></a>
+      <a href="https://github.com/ubden/tms/releases"><img src="https://img.shields.io/github/v/release/fleetbase/fleetbase" alt="Latest Release"></a>
       <a href="https://codecov.io/gh/fleetbase/fleetbase"><img src="https://codecov.io/gh/fleetbase/fleetbase/branch/main/graph/badge.svg" alt="Coverage"></a>
       <a href="https://github.com/fleetbase/fleetbase/stargazers"><img src="https://img.shields.io/github/stars/fleetbase/fleetbase?style=social" alt="GitHub Stars"></a>
       <a href="https://discord.gg/V7RVWRQ2Wm"><img src="https://img.shields.io/discord/699834923032248430?logo=discord&label=Discord" alt="Discord"></a>
@@ -15,9 +15,9 @@
     <p align="center" dir="auto">
       Modular logistics and supply chain operating system
       <br>
-      <a href="https://www.fleetbase.io/docs" rel="nofollow" target="_fleetbase_docs">Documentation</a>
+      <a href="https://www.ubden.com/docs" rel="nofollow" target="_fleetbase_docs">Documentation</a>
       ·
-      <a href="https://www.fleetbase.io/docs/api" rel="nofollow" target="_fleetbase_api_docs">API Reference</a>
+      <a href="https://www.ubden.com/docs/api" rel="nofollow" target="_fleetbase_api_docs">API Reference</a>
       ·
       <a href="https://console.fleetbase.io" rel="nofollow" target="_fleetbase_console">Cloud Version</a>
       ·
@@ -100,7 +100,7 @@ flb install-fleetbase
 
 ## 💾 Install
 
-The easiest way to get started with Fleetbase is using the Fleetbase CLI, which automates the entire Docker-based installation process. For local setup options, read the [running locally quickstart in the Fleetbase documentation](https://www.fleetbase.io/docs/platform/quickstart/running-locally).
+The easiest way to get started with Fleetbase is using the Fleetbase CLI, which automates the entire Docker-based installation process. For local setup options, read the [running locally quickstart in the Fleetbase documentation](https://www.ubden.com/docs/platform/quickstart/running-locally).
 
 ### Prerequisites
 - Node.js v22
@@ -176,7 +176,7 @@ services:
 
 **WebSocket Security:** The `SOCKETCLUSTER_OPTIONS` environment variable controls which domains can connect to the WebSocket server. Always restrict origins to your specific domains in production to prevent security vulnerabilities.
 
-You can learn more about local installation and configuration in the [official documentation](https://www.fleetbase.io/docs/platform/quickstart/running-locally).
+You can learn more about local installation and configuration in the [official documentation](https://www.ubden.com/docs/platform/quickstart/running-locally).
 
 ## ⌨️ Fleetbase CLI 
 
@@ -247,7 +247,7 @@ flb install fleetbase/fleetops
 
 ### Developing Extensions
 
-You can develop and publish your own extensions to extend Fleetbase's functionality or monetize through the marketplace. Learn more in the [extension development quickstart](https://www.fleetbase.io/docs/extension-development/getting-started/quickstart).
+You can develop and publish your own extensions to extend Fleetbase's functionality or monetize through the marketplace. Learn more in the [extension development quickstart](https://www.ubden.com/docs/extension-development/getting-started/quickstart).
 
 ```bash
 # 1. Register a developer account (one-time)
@@ -293,7 +293,7 @@ Want to influence our roadmap? [Join the discussion](https://github.com/orgs/fle
 | **Cloud Self-Hosted** | Production (AWS, GCP, Azure) | 30-60 minutes | Self-managed |
 | **Fleetbase Cloud** | Quick start, no DevOps | Instant | Fully managed |
 
-[View the cloud deployment guide →](https://www.fleetbase.io/docs/platform/quickstart/deploy-in-cloud)
+[View the cloud deployment guide →](https://www.ubden.com/docs/platform/quickstart/deploy-in-cloud)
 
 ## 🐛 Bugs and 💡 Feature Requests
 
@@ -303,11 +303,11 @@ Have a bug or a feature request? Please check the <a href="https://github.com/fl
 
 Fleetbase has comprehensive documentation to help you get started and make the most of the platform:
 
-- **Getting Started**: [Run Fleetbase locally](https://www.fleetbase.io/docs/platform/quickstart/running-locally)
-- **API Reference**: [API Documentation](https://www.fleetbase.io/docs/api)
-- **Developer Console**: [API keys and integration setup](https://www.fleetbase.io/docs/platform/developer-console/api-keys)
-- **Extension Development**: [Extension quickstart](https://www.fleetbase.io/docs/extension-development/getting-started/quickstart)
-- **Deployment**: [Deploy Fleetbase in the cloud](https://www.fleetbase.io/docs/platform/quickstart/deploy-in-cloud)
+- **Getting Started**: [Run Fleetbase locally](https://www.ubden.com/docs/platform/quickstart/running-locally)
+- **API Reference**: [API Documentation](https://www.ubden.com/docs/api)
+- **Developer Console**: [API keys and integration setup](https://www.ubden.com/docs/platform/developer-console/api-keys)
+- **Extension Development**: [Extension quickstart](https://www.ubden.com/docs/extension-development/getting-started/quickstart)
+- **Deployment**: [Deploy Fleetbase in the cloud](https://www.ubden.com/docs/platform/quickstart/deploy-in-cloud)
 
 ## 🤝 Contributing
 
@@ -316,10 +316,10 @@ We welcome contributions from the community! Here's how you can help:
 - **Report Bugs**: [Open an issue](https://github.com/fleetbase/fleetbase/issues/new)
 - **Suggest Features**: [Start a discussion](https://github.com/orgs/fleetbase/discussions)
 - **Submit PRs**: Read our [Contributing Guide](https://github.com/fleetbase/fleetbase/blob/main/CONTRIBUTING.md)
-- **Write Documentation**: Help improve our [docs](https://www.fleetbase.io/docs)
-- **Build Extensions**: Create and share [extensions](https://www.fleetbase.io/docs/extension-development/getting-started/quickstart)
+- **Write Documentation**: Help improve our [docs](https://www.ubden.com/docs)
+- **Build Extensions**: Create and share [extensions](https://www.ubden.com/docs/extension-development/getting-started/quickstart)
 
-**Development Setup**: See our [Development Setup Guide](https://www.fleetbase.io/docs/platform/quickstart/development-setup) for detailed instructions on setting up your local development environment.
+**Development Setup**: See our [Development Setup Guide](https://www.ubden.com/docs/platform/quickstart/development-setup) for detailed instructions on setting up your local development environment.
 
 ## 👥 Community
 
@@ -327,11 +327,11 @@ Get updates on Fleetbase's development and chat with the project maintainers and
 
 <ul>
   <li>Follow <a href="https://x.com/fleetbase_io">@fleetbase_io on X</a>.</li>
-  <li>Read and subscribe to <a href="https://www.fleetbase.io/blog-2">The Official Fleetbase Blog</a>.</li>
+  <li>Read and subscribe to <a href="https://www.ubden.com/blog-2">The Official Fleetbase Blog</a>.</li>
   <li>Ask and explore <a href="https://github.com/orgs/fleetbase/discussions">our GitHub Discussions</a>.</li>
 </ul>
-<p dir="auto">See the <a href="https://github.com/fleetbase/fleetbase/releases">Releases</a> section of our GitHub project for changelogs for each release version of Fleetbase.</p>
-<p>Release announcement posts on <a href="https://www.fleetbase.io/blog-2" rel="nofollow">the official Fleetbase blog</a> contain summaries of the most noteworthy changes made in each release.</p>
+<p dir="auto">See the <a href="https://github.com/ubden/tms/releases">Releases</a> section of our GitHub project for changelogs for each release version of Fleetbase.</p>
+<p>Release announcement posts on <a href="https://www.ubden.com/blog-2" rel="nofollow">the official Fleetbase blog</a> contain summaries of the most noteworthy changes made in each release.</p>
 
 ## Creators
 
@@ -405,7 +405,7 @@ You should consider a commercial license if you:
 For more information about commercial licensing options, please contact us:
 
 - **Email:** [hello@fleetbase.io](mailto:hello@fleetbase.io)
-- **Website:** [fleetbase.io](https://fleetbase.io)
+- **Website:** [fleetbase.io](https://ubden.com)
 
 ---
 

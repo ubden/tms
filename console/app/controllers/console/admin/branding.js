@@ -88,7 +88,7 @@ export default class ConsoleAdminBrandingController extends Controller {
      */
     @action unsetLogo() {
         this.unset(['logo_uuid', 'logo_url']);
-        this.model.set('logo_url', '/images/fleetbase-logo-svg.svg');
+        this.model.set('logo_url', 'https://www.ubden.com/assets/images/ubden_light_slogansiz.png');
     }
 
     /**
@@ -107,7 +107,7 @@ export default class ConsoleAdminBrandingController extends Controller {
 
                 // if logo url is null
                 if (this.model.logo_url === null) {
-                    this.model.set('logo_url', '/images/fleetbase-logo-svg.svg');
+                    this.model.set('logo_url', 'https://www.ubden.com/assets/images/ubden_light_slogansiz.png');
                 }
 
                 // if icon url is null

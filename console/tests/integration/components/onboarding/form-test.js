@@ -135,7 +135,7 @@ module('Integration | Component | onboarding/form | onboard', function (hooks) {
             component.name = 'Ron Richardson';
             component.email = 'ron@fleetbase.io';
             component.phone = '+15551234567';
-            component.organization_name = 'Fleetbase';
+            component.organization_name = 'UbdenTMS';
             component.password = 'super-secret-password';
             component.password_confirmation = 'super-secret-password';
         };

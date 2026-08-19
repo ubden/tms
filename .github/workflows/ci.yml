@@ -1,4 +1,4 @@
-name: Fleetbase CI
+name: UbdenTMS CI
 
 # Image-build gate: proves the Docker images still bake from source.
 # This is one of four sibling checks that together gate `main`:
