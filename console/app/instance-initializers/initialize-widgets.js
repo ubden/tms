@@ -28,8 +28,8 @@ export function initialize(appInstance) {
         const widgets = [
             new Widget({
                 id: 'fleetbase-blog',
-                name: 'Fleetbase Blog',
-                description: 'Lists latest news and events from the Fleetbase official team.',
+                name: 'Ubden TMS Blog',
+                description: 'Lists latest news and events from the Ubden TMS team.',
                 icon: 'newspaper',
                 component: 'fleetbase-blog',
                 grid_options: { w: 7, h: 9, minW: 7, minH: 9 },
@@ -38,7 +38,7 @@ export function initialize(appInstance) {
             new Widget({
                 id: 'fleetbase-github-card',
                 name: 'Github Card',
-                description: 'Displays current Github stats from the official Fleetbase repo.',
+                description: 'Displays current GitHub stats from the ubden/tms repo.',
                 icon: faGithub,
                 component: 'github-card',
                 grid_options: { w: 5, h: 9, minW: 5, minH: 9 },

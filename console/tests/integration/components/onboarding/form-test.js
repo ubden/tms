@@ -40,7 +40,7 @@ module('Integration | Component | onboarding/form', function (hooks) {
     });
 
     test('it renders the brand logo when a brand is supplied', async function (assert) {
-        await render(hbs`<Onboarding::Form @brand={{hash logo_url="/images/fleetbase-logo-svg.svg"}} />`);
+        await render(hbs`<Onboarding::Form @brand={{hash logo_url="https://www.ubden.com/assets/images/ubden_light_slogansiz.png"}} />`);
 
         assert.dom('img').exists('the brand logo renders');
     });
@@ -135,7 +135,7 @@ module('Integration | Component | onboarding/form | onboard', function (hooks) {
             component.name = 'Ron Richardson';
             component.email = 'ron@fleetbase.io';
             component.phone = '+15551234567';
-            component.organization_name = 'Fleetbase';
+            component.organization_name = 'Ubden TMS';
             component.password = 'super-secret-password';
             component.password_confirmation = 'super-secret-password';
         };
@@ -193,7 +193,7 @@ module('Integration | Component | onboarding/form | onboard', function (hooks) {
         const { path, payload } = this.posted.at(-1);
         assert.strictEqual(path, 'onboard/create-account');
         assert.strictEqual(payload.email, 'ron@fleetbase.io');
-        assert.strictEqual(payload.organization_name, 'Fleetbase');
+        assert.strictEqual(payload.organization_name, 'Ubden TMS');
         assert.strictEqual(payload.timezone, Intl.DateTimeFormat().resolvedOptions().timeZone, 'the browser timezone is sent along');
         assert.deepEqual(this.persisted, [['session', 'session-token']], 'the session is persisted for the next step');
         assert.deepEqual(this.orchestratorCalls, ['next'], 'the onboarding flow advances');
@@ -210,7 +210,7 @@ module('Integration | Component | onboarding/form | onboard', function (hooks) {
 
         assert.deepEqual(this.owner.lookup('service:session').authenticated, ['auth-token']);
         assert.deepEqual(this.transitions, ['console'], 'the user lands in the console');
-        assert.deepEqual(this.notifications().successes, ['Welcome to Fleetbase!']);
+        assert.deepEqual(this.notifications().successes, ['Welcome to Ubden TMS!']);
         assert.deepEqual(this.orchestratorCalls, [], 'the onboarding flow is not advanced');
     });
 

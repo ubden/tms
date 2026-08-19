@@ -26,7 +26,7 @@ export default class GithubCardComponent extends Component {
     }
 
     @computed('data.releases_url', 'latestRelease.name') get releaseUrl() {
-        let url = 'https://github.com/fleetbase/fleetbase/releases';
+        let url = 'https://github.com/ubden/tms/releases';
 
         if (!isBlank(this.latestRelease?.name)) {
             url += '/tag/' + this.latestRelease.name;
@@ -52,7 +52,7 @@ export default class GithubCardComponent extends Component {
             this.data = cachedData;
         } else {
             // Fetch new data
-            const response = yield fetch('https://api.github.com/repos/fleetbase/fleetbase', { cache: 'default' });
+            const response = yield fetch('https://api.github.com/repos/ubden/tms', { cache: 'default' });
 
             // The component can be torn down mid-request; writing tracked state afterwards
             // throws "Cannot create a new tag ... after it has been destroyed".
@@ -79,7 +79,7 @@ export default class GithubCardComponent extends Component {
             this.tags = cachedTags;
         } else {
             // Fetch new tags
-            const response = yield fetch('https://api.github.com/repos/fleetbase/fleetbase/tags', { cache: 'default' });
+            const response = yield fetch('https://api.github.com/repos/ubden/tms/tags', { cache: 'default' });
 
             if (this.isDestroying || this.isDestroyed) {
                 return;

@@ -16,7 +16,7 @@ class HealthCheckTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertJsonPath('message', 'Fleetbase API');
+        $response->assertJsonPath('message', 'Ubden TMS API');
         $response->assertJsonStructure(['message', 'version', 'fleetbase', 'ms']);
     }
 

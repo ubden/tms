@@ -1,7 +1,7 @@
 <div id="hero">
   <p align="center" dir="auto">
-      <a href="https://fleetbase.io" rel="nofollow">
-        <img src="https://user-images.githubusercontent.com/58805033/191936702-fed04b0f-7966-4041-96d0-95e27bf98248.png" alt="Fleetbase logo" width="500" height="120" style="max-width: 100%;">
+      <a href="https://ubden.com" rel="nofollow">
+        <img src="https://user-images.githubusercontent.com/58805033/191936702-fed04b0f-7966-4041-96d0-95e27bf98248.png" alt="Ubden TMS logo" width="500" height="120" style="max-width: 100%;">
       </a>
     </p>
     <p align="center" dir="auto">
@@ -28,9 +28,9 @@
     <hr />
 </div>
 
-## What is Fleetbase?
+## What is Ubden TMS?
 
-Fleetbase is a modular logistics and supply chain operating system designed to streamline management, planning, optimization, and operational control across various sectors of the supply chain industry.
+Ubden TMS is a modular logistics and supply chain operating system designed to streamline management, planning, optimization, and operational control across various sectors of the supply chain industry.
 
 <p align="center" dir="auto">
   <img src="https://flb-assets.s3.ap-southeast-1.amazonaws.com/static/fleetbase_overview.png" alt="Fleetbase Console" width="1200" style="max-width: 100%;" />
@@ -405,7 +405,7 @@ You should consider a commercial license if you:
 For more information about commercial licensing options, please contact us:
 
 - **Email:** [hello@fleetbase.io](mailto:hello@fleetbase.io)
-- **Website:** [fleetbase.io](https://fleetbase.io)
+- **Website:** [fleetbase.io](https://ubden.com)
 
 ---
 

@@ -26,9 +26,9 @@ module('Integration | Component | github-card', function (hooks) {
             LOCAL_CACHE_KEY,
             JSON.stringify({
                 'fleetbase-github-data': {
-                    full_name: 'fleetbase/fleetbase',
-                    html_url: 'https://github.com/fleetbase/fleetbase',
-                    owner: { avatar_url: '/images/fleetbase-logo-svg.svg' },
+                    full_name: 'ubden/tms',
+                    html_url: 'https://github.com/ubden/tms',
+                    owner: { avatar_url: 'https://www.ubden.com/assets/images/ubden_light_slogansiz.png' },
                 },
                 'fleetbase-github-data-expiration': notExpired,
                 'fleetbase-github-tags': [{ name: 'v0.7.53' }],
@@ -46,7 +46,7 @@ module('Integration | Component | github-card', function (hooks) {
         await render(hbs`<GithubCard />`);
 
         assert.dom('.fleetbase-github-card').exists('the card renders');
-        assert.dom(this.element).containsText('fleetbase/fleetbase');
+        assert.dom(this.element).containsText('ubden/tms');
     });
 
     test('it shows the latest cached release tag', async function (assert) {
@@ -75,8 +75,8 @@ module('Integration | Component | github-card | fetching', function (hooks) {
         this.fetchModule = window.require('fetch');
         this.originalFetch = this.fetchModule.default;
         this.responses = {
-            'https://api.github.com/repos/fleetbase/fleetbase': { ok: true, body: { full_name: 'fleetbase/fleetbase' } },
-            'https://api.github.com/repos/fleetbase/fleetbase/tags': { ok: true, body: [{ name: 'v9.9.9' }] },
+            'https://api.github.com/repos/ubden/tms': { ok: true, body: { full_name: 'ubden/tms' } },
+            'https://api.github.com/repos/ubden/tms/tags': { ok: true, body: [{ name: 'v9.9.9' }] },
         };
 
         this.fetchModule.default = (url) => {
@@ -99,12 +99,12 @@ module('Integration | Component | github-card | fetching', function (hooks) {
     test('an empty cache fetches the repository and its tags, then caches both', async function (assert) {
         await render(hbs`<GithubCard />`);
 
-        assert.deepEqual(this.requested.slice().sort(), ['https://api.github.com/repos/fleetbase/fleetbase', 'https://api.github.com/repos/fleetbase/fleetbase/tags']);
-        assert.dom(this.element).containsText('fleetbase/fleetbase');
+        assert.deepEqual(this.requested.slice().sort(), ['https://api.github.com/repos/ubden/tms', 'https://api.github.com/repos/ubden/tms/tags']);
+        assert.dom(this.element).containsText('ubden/tms');
         assert.dom(this.element).containsText('v9.9.9');
 
         const cache = JSON.parse(window.localStorage.getItem(LOCAL_CACHE_KEY));
-        assert.deepEqual(cache['fleetbase-github-data'], { full_name: 'fleetbase/fleetbase' }, 'the repository is cached');
+        assert.deepEqual(cache['fleetbase-github-data'], { full_name: 'ubden/tms' }, 'the repository is cached');
         assert.deepEqual(cache['fleetbase-github-tags'], [{ name: 'v9.9.9' }], 'the tags are cached');
         assert.ok(cache['fleetbase-github-data-expiration'], 'with an expiry stamp');
         assert.ok(cache['fleetbase-github-tags-expiration']);
@@ -126,7 +126,7 @@ module('Integration | Component | github-card | fetching', function (hooks) {
         await render(hbs`<GithubCard />`);
 
         assert.strictEqual(this.requested.length, 2, 'both endpoints are refetched');
-        assert.dom(this.element).containsText('fleetbase/fleetbase');
+        assert.dom(this.element).containsText('ubden/tms');
         assert.dom(this.element).doesNotContainText('stale/repo');
     });
 
@@ -148,11 +148,11 @@ module('Integration | Component | github-card | fetching', function (hooks) {
         const component = captured.instance;
 
         assert.deepEqual(component.latestRelease, { name: 'v9.9.9' }, 'the first tag is the latest release');
-        assert.strictEqual(component.releaseUrl, 'https://github.com/fleetbase/fleetbase/releases/tag/v9.9.9');
+        assert.strictEqual(component.releaseUrl, 'https://github.com/ubden/tms/releases/tag/v9.9.9');
 
         component.tags = [];
         assert.deepEqual(component.latestRelease, { name: 'v0.0.1' }, 'with no tags a placeholder release is used');
-        assert.strictEqual(component.releaseUrl, 'https://github.com/fleetbase/fleetbase/releases/tag/v0.0.1');
+        assert.strictEqual(component.releaseUrl, 'https://github.com/ubden/tms/releases/tag/v0.0.1');
     });
 
     test('the release link drops the tag segment when the release has no name', async function (assert) {
@@ -163,7 +163,7 @@ module('Integration | Component | github-card | fetching', function (hooks) {
 
         component.tags = [{ name: '' }];
 
-        assert.strictEqual(component.releaseUrl, 'https://github.com/fleetbase/fleetbase/releases', 'a blank tag name leaves the plain releases URL');
+        assert.strictEqual(component.releaseUrl, 'https://github.com/ubden/tms/releases', 'a blank tag name leaves the plain releases URL');
     });
 });
 
