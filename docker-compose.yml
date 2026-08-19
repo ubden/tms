@@ -1,123 +1,214 @@
 services:
+
   cache:
     image: redis:4-alpine
     restart: unless-stopped
+
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+
   database:
     image: mysql:8.0-oracle
     restart: unless-stopped
-    ports:
-      - "3306:3306"
-    volumes:
-      - "./docker/database/:/docker-entrypoint-initdb.d/"
-      - "./docker/database/mysql:/var/lib/mysql"
+
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: "fleetbase"
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: fleetbase
+      MYSQL_USER: fleetbase
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+    volumes:
+      - "./docker/database/:/docker-entrypoint-initdb.d/:ro"
+      - fleetbase_db_data:/var/lib/mysql
+
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD || exit 1"
+        ]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
+
 
   socket:
     image: socketcluster/socketcluster:v17.4.0
     platform: linux/amd64
     restart: unless-stopped
-    ports:
-      - "38000:8000"
+
+    expose:
+      - "8000"
+
     environment:
       SOCKETCLUSTER_WORKERS: 10
       SOCKETCLUSTER_BROKERS: 10
-      # SOCKETCLUSTER_OPTIONS can be set via docker-compose.override.yml for specific environments
-      # For production, use: SOCKETCLUSTER_OPTIONS: '{"origins":"https://yourdomain.com:*"}'
-      # For development, use: SOCKETCLUSTER_OPTIONS: '{"origins":"http://localhost:*"}'
+      SOCKETCLUSTER_OPTIONS: '{"origins":"https://${CONSOLE_DOMAIN}:*,wss://${CONSOLE_DOMAIN}:*"}'
+
 
   scheduler:
     image: fleetbase/fleetbase-api:latest
-    command: ["go-crond", "--verbose", "root:./crontab"]
     restart: unless-stopped
+
+    command:
+      - go-crond
+      - --verbose
+      - root:./crontab
+
     environment:
-      DATABASE_URL: "mysql://root@database/fleetbase"
+      APP_KEY: ${APP_KEY}
+      APP_ENV: production
+      ENVIRONMENT: production
+
+      DATABASE_URL: "mysql://fleetbase:${DB_PASSWORD}@database/fleetbase"
+
       QUEUE_CONNECTION: redis
+
       CACHE_DRIVER: redis
       CACHE_PATH: /fleetbase/api/storage/framework/cache
       CACHE_URL: tcp://cache
+
       REDIS_URL: tcp://cache
+
     depends_on:
-      - database
-      - cache
+      database:
+        condition: service_healthy
+
+      cache:
+        condition: service_healthy
+
 
   queue:
     image: fleetbase/fleetbase-api:latest
-    command: ["php", "artisan", "queue:work"]
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "php", "artisan", "queue:status"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+
+    command:
+      - php
+      - artisan
+      - queue:work
+      - --tries=3
+      - --timeout=90
+
     environment:
-      DATABASE_URL: "mysql://root@database/fleetbase"
+      APP_KEY: ${APP_KEY}
+      APP_ENV: production
+      ENVIRONMENT: production
+
+      DATABASE_URL: "mysql://fleetbase:${DB_PASSWORD}@database/fleetbase"
+
       QUEUE_CONNECTION: redis
+
       CACHE_DRIVER: redis
       CACHE_PATH: /fleetbase/api/storage/framework/cache
       CACHE_URL: tcp://cache
-      REDIS_URL: tcp://cache
-    depends_on:
-      - database
-      - cache
 
-  console:
-    restart: unless-stopped
-    build:
-      context: ./console
-      dockerfile: Dockerfile
-      args:
-        ENVIRONMENT: development
-    ports:
-      - "4200:4200"
-    volumes:
-      - ./console/fleetbase.config.json:/usr/share/nginx/html/fleetbase.config.json
+      REDIS_URL: tcp://cache
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+      cache:
+        condition: service_healthy
+
 
   application:
-    restart: unless-stopped
     image: fleetbase/fleetbase-api:latest
-    volumes:
-      - ./api/.env:/fleetbase/api/.env
-      - ./api/storage/app:/fleetbase/api/storage/app
+    restart: unless-stopped
+
     environment:
-      ENVIRONMENT: development
-      DATABASE_URL: "mysql://root@database/fleetbase"
+      APP_KEY: ${APP_KEY}
+
+      APP_NAME: ${APP_NAME}
+      APP_ENV: production
+      ENVIRONMENT: production
+      APP_DEBUG: "false"
+
+      APP_URL: "https://${API_DOMAIN}"
+      CONSOLE_HOST: "https://${CONSOLE_DOMAIN}"
+      FRONTEND_HOSTS: "https://${CONSOLE_DOMAIN}"
+
+      DATABASE_URL: "mysql://fleetbase:${DB_PASSWORD}@database/fleetbase"
+
       QUEUE_CONNECTION: redis
+
       CACHE_DRIVER: redis
       CACHE_PATH: /fleetbase/api/storage/framework/cache
       CACHE_URL: tcp://cache
+
       REDIS_URL: tcp://cache
-      SESSION_DOMAIN: localhost
+
+      SESSION_DRIVER: redis
+      SESSION_DOMAIN: ".${BASE_DOMAIN}"
+
       BROADCAST_DRIVER: socketcluster
-      MAIL_FROM_NAME: Fleetbase
-      APP_NAME: Fleetbase
+
+      MAIL_MAILER: ${MAIL_MAILER}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+
       LOG_CHANNEL: daily
+
       REGISTRY_HOST: https://registry.fleetbase.io
       REGISTRY_PREINSTALLED_EXTENSIONS: "true"
+
       OSRM_HOST: https://router.project-osrm.org
+
+    volumes:
+      - fleetbase_api_storage:/fleetbase/api/storage/app
+
     depends_on:
-      - database
-      - cache
-      - queue
+      database:
+        condition: service_healthy
+
+      cache:
+        condition: service_healthy
+
+      queue:
+        condition: service_started
+
 
   httpd:
     restart: unless-stopped
+
     build:
       context: .
       dockerfile: docker/httpd/Dockerfile
-    ports:
-      - "8000:80"
+
+    expose:
+      - "80"
+
     depends_on:
       - application
+
+
+  console:
+    restart: unless-stopped
+
+    build:
+      context: ./console
+      dockerfile: Dockerfile
+
+      args:
+        ENVIRONMENT: production
+
+    expose:
+      - "4200"
+
+    volumes:
+      - ./console/fleetbase.config.json:/usr/share/nginx/html/fleetbase.config.json:ro
+
+
+volumes:
+  fleetbase_db_data:
+  fleetbase_api_storage:
