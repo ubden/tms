@@ -1,3 +1,6 @@
 {
-    "API_HOST": "http://localhost:8000"
+    "API_HOST": "https://tms-api.1vs.co",
+    "SOCKETCLUSTER_HOST": "tms-socket.1vs.co",
+    "SOCKETCLUSTER_PORT": "443",
+    "SOCKETCLUSTER_SECURE": "true"
 }
