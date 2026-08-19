@@ -161,6 +161,7 @@ services:
       # Public URLs
       APP_URL: "https://${API_DOMAIN}"
       CONSOLE_HOST: "https://${CONSOLE_DOMAIN}"
+      FRONTEND_HOSTS: "https://${CONSOLE_DOMAIN}"
 
       # Database
       DATABASE_URL: "mysql://root:${DB_ROOT_PASSWORD}@database/fleetbase"
@@ -176,7 +177,7 @@ services:
 
       # Sessions
       SESSION_DRIVER: redis
-      SESSION_DOMAIN: ".${BASE_DOMAIN}"
+      SESSION_DOMAIN: "${BASE_DOMAIN}"
 
       # Realtime
       BROADCAST_DRIVER: socketcluster
